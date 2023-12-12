@@ -262,17 +262,23 @@ SVG(model_to_dot(model, show_shapes= True, show_layer_names=True, dpi=65).create
 plot_model(model, to_file='model.png')
 
 
-
-
-
 # Generate 20 random indices for test samples
 num_tests = 20
 random_test_indices = np.random.choice(len(age_test), num_tests, replace=False)
 
 # Display the predicted values versus the true values for the selected test samples
-print("Predicted Values vs True Values for 20 Test Samples:")
+print("Predicted Values vs True Values for 20 Random Test Samples:")
+print("***********************************************************")
+
+correct = 0
+
 for index in random_test_indices:
     predicted_value = rounded_predictions[index]
     true_value = labels_test[index][0]  # Extracting the value without brackets
 
     print(f"Test Sample {index + 1}: Predicted Value = {predicted_value}, True Value = {true_value}")
+
+    if (predicted_value == true_value):
+        correct+=1
+print("***********************************************************")
+print(f"\n{correct} Correct Predictions")
